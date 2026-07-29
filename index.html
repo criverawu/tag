@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Quieres ser mi enamorada?</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#ff8fb1,#ffd4e2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+.card{
+    width:550px;
+    max-width:90%;
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+    animation:aparecer .8s;
+}
+
+@keyframes aparecer{
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+h1{
+    color:#e91e63;
+    margin-bottom:20px;
+}
+
+h2{
+    margin-top:25px;
+    color:#444;
+}
+
+p{
+    margin-top:18px;
+    color:#555;
+    line-height:1.7;
+    font-size:18px;
+}
+
+.botones{
+    margin-top:35px;
+}
+
+button{
+    padding:14px 22px;
+    margin:10px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+#acepto{
+    background:#43a047;
+    color:white;
+}
+
+#considerar{
+    background:#fbc02d;
+}
+
+#no{
+    background:#e53935;
+    color:white;
+    position:relative;
+}
+
+#segundaPregunta{
+    display:none;
+    margin-top:30px;
+}
+
+.corazon{
+    position:absolute;
+    color:red;
+    animation:subir 4s linear infinite;
+}
+
+@keyframes subir{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>💙  quiero preguntarte algo 💙</h1>
+
+<p>
+Sé que las cosas no han sido fáciles y que estamos pasando por un momento complicado.
+</p>
+
+<p>
+A pesar de eso, hay algo que no ha cambiado: eres una persona muy especial para mí. Disfruto mucho cuando estamos juntos, cuando conversamos y hasta cuando simplemente compartimos un momento.
+</p>
+
+<p>
+Por eso quiero preguntarte algo que llevo un tiempo queriendo decirte...
+</p>
+
+<h2>❤️ ¿Quieres ser mi enamorada? ❤️</h2>
+
+<div class="botones">
+
+<button id="acepto" onclick="acepto()">
+❤️ Acepto
+</button>
+
+<button id="considerar" onclick="mostrarSegunda()">
+🤔 Creo que debo pensarlo
+</button>
+
+<button id="no" onmouseover="moverNo()">
+🙈 No acepto
+</button>
+
+</div>
+
+<div id="segundaPregunta">
+
+<h3 style="margin-top:20px;color:#e91e63;">
+😊 Tómate tu tiempo...
+</h3>
+
+<p>
+No quiero presionarte, pero antes de responder definitivamente...
+¿Segura que no quieres darle una oportunidad a esto?
+</p>
+
+<button onclick="acepto()">
+❤️ Lo pensé... acepto
+</button>
+
+<button onclick="alert('😊 Está bien. Gracias por ser sincera conmigo.')">
+🙈 No acepto
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function mostrarSegunda(){
+    document.getElementById("segundaPregunta").style.display="block";
+}
+
+function moverNo(){
+
+    let boton=document.getElementById("no");
+
+    let x=Math.random()*280-140;
+    let y=Math.random()*180-90;
+
+    boton.style.transform=`translate(${x}px,${y}px)`;
+
+}
+
+function acepto(){
+
+document.body.innerHTML=`
+
+<div style="display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:linear-gradient(135deg,#ff8fb1,#ffd4e2);
+padding:25px;
+text-align:center;">
+
+<div>
+
+<h1 style="font-size:60px;color:#e91e63;">
+🥹 ¡Me hiciste muy feliz!
+</h1>
+
+<h2 style="margin-top:20px;color:#d81b60;">
+❤️ Ahora oficialmente somos enamorados ❤️
+</h2>
+
+<p style="font-size:22px;
+line-height:1.8;
+max-width:750px;
+margin:auto;
+margin-top:25px;
+color:#444;">
+
+Gracias por darme la oportunidad de compartir esta etapa contigo.
+
+No espero que todo sea perfecto, porque sé que ninguna relación lo es.
+
+Solo quiero que construyamos algo bonito, con confianza, respeto, muchas risas y buenos recuerdos.
+
+Quiero seguir conociéndote, apoyarte cuando lo necesites y disfrutar cada momento que venga.
+
+Gracias por decir que sí. ❤️
+
+</p>
+
+<h2 style="margin-top:35px;color:#e91e63;">
+Te quiero muchísimo. 🥰
+</h2>
+
+</div>
+
+</div>
+
+`;
+
+lluviaCorazones();
+
+}
+
+function lluviaCorazones(){
+
+setInterval(()=>{
+
+let corazon=document.createElement("div");
+
+corazon.className="corazon";
+
+const emojis=["❤️","💕","💖","💗","💘","💝"];
+
+corazon.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+corazon.style.left=Math.random()*100+"vw";
+corazon.style.top="100vh";
+corazon.style.fontSize=(20+Math.random()*35)+"px";
+
+document.body.appendChild(corazon);
+
+setTimeout(()=>{
+corazon.remove();
+},4000);
+
+},120);
+
+}
+
+</script>
+
+</body>
+</html>
